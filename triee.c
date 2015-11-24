@@ -1,17 +1,19 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <sys\stat.h>
 #include "trie.h"
 
 
 //Функция создания узлов и выделения памяти для них
-Trie *TrieNodeCr(char ch);
+Trie *trieNodeCr(char ch);
+int fileSize(char *name);
  
-Trie *TrieCreate(Trie **head)
+Trie *trieCreate(Trie **head)
 {
-  *head = TrieNodeCr('\0');
+  *head = trieNodeCr('\0');
 }
 
-Trie *TrieNodeCr(char ch)
+Trie *trieNodeCr(char ch)
 {
   Trie *node = NULL;
   node = (Trie *)malloc(sizeof(Trie));
@@ -30,7 +32,7 @@ Trie *TrieNodeCr(char ch)
  return node;
 }
  
-Trie *TrieAdd(Trie **head, char *ch)
+Trie *trieAdd(Trie **head, char *ch)
 {
   Trie *node = NULL;
  
@@ -45,7 +47,7 @@ Trie *TrieAdd(Trie **head, char *ch)
   /*Первая строка*/
   for(node = *head; *ch; node = node->child)
   {
-    node->child = TrieNodeCr(*ch);
+    node->child = trieNodeCr(*ch);
     if ( node->ch != NULL)
     {
       node->value++;
@@ -54,7 +56,7 @@ Trie *TrieAdd(Trie **head, char *ch)
     ch++;
   }
   node->value++;
-  node->child = TrieNodeCr('\0');
+  node->child = trieNodeCr('\0');
   node->child->parent = node;
   return node;
   }
@@ -76,7 +78,7 @@ Trie *TrieAdd(Trie **head, char *ch)
     if(*ch == node->next->ch)
     {
       ch++;
-      TrieAdd(&(node->next), ch);
+      trieAdd(&(node->next), ch);
       return node;
     }
     node = node->next;
@@ -84,7 +86,7 @@ Trie *TrieAdd(Trie **head, char *ch)
  
   if(*ch)
   {
-    node->next = TrieNodeCr(*ch);
+    node->next = trieNodeCr(*ch);
   }
  
   node->next->parent = node->parent;
@@ -99,7 +101,7 @@ Trie *TrieAdd(Trie **head, char *ch)
  
   for(node = node->next; *ch; node = node->child)
   {
-    node->child = TrieNodeCr(*ch);
+    node->child = trieNodeCr(*ch);
     if ( node->ch != NULL)
     {
       node->value++;
@@ -108,12 +110,12 @@ Trie *TrieAdd(Trie **head, char *ch)
     ch++;
   }
   node->value++;
-  node->child = TrieNodeCr('\0');
+  node->child = trieNodeCr('\0');
   node->child->parent = node;
   return node;
 }
  
-Trie *TrieDestroy( Trie* head )
+Trie *trieDestroy( Trie* head )
 {
   Trie *node = head;
   Trie *tmp = head;
@@ -163,7 +165,7 @@ Trie *TrieDestroy( Trie* head )
   }
 }
 
-void TriePrint(Trie *head){
+void triePrint(Trie *head){
 
   int level = 0;
   return trie_print( head, level);
@@ -184,4 +186,41 @@ void trie_print(Trie *head, int level)
       }
   }
   return;
+}
+
+int fileSize(char *name)
+{
+  FILE *fp;
+  int size;
+  struct stat buff;
+  if ((fp=fopen(name, "r")) == NULL) {
+    printf("Cannot open file.\n");
+    exit (1);
+  }
+// заполнение структуры типа stat 
+  fstat (fileno (fp), &buff);
+  size = buff.st_size;
+  fclose (fp);
+  return size;
+}
+
+Trie *trieCreateByFile(Trie **head, char *name)
+{
+  FILE *fp;
+  Trie *node;
+  int s = fileSize(name);
+  char arr[s][s];
+
+  if ((fp=fopen(name, "r")) == NULL) {
+    printf("Cannot open file.\n");
+    exit (1);
+  }
+ // trieCreate(&node);
+  while(fgets(arr, s, fp))
+  {
+  // create subtree 
+    //trieAdd(&node, "asd");
+    printf("%s\n", arr);
+  }
+  fclose (fp);
 }
