@@ -1,12 +1,12 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include "trie.h"
+#include "Trie.h"
 
 
 int main()
 {   
     Trie *head;
-    head = trieCreateByFile(&head, "test.txt");
+    trieCreateByFile(&head, "test.txt");
       /*trieCreate(&head);
         trieAdd(&head, "asdf");
     trieAdd(&head, "asdfg");
