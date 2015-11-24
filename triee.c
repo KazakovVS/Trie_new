@@ -102,10 +102,7 @@ Trie *trieAdd(Trie **head, char *ch)
   for(node = node->next; *ch; node = node->child)
   {
     node->child = trieNodeCr(*ch);
-    if ( node->ch != NULL)
-    {
-      node->value++;
-    }
+    node->value++;
     node->child->parent = node;
     ch++;
   }
@@ -208,18 +205,23 @@ Trie *trieCreateByFile(Trie **head, char *name)
 {
   FILE *fp;
   Trie *node = head;
+  int i=0;
   int s = fileSize(name);
   char arr[s][s];
   trieCreate(&head);
- // trieAdd(&head, "asd");
   if ((fp=fopen(name, "r")) == NULL) {
     printf("Cannot open file.\n");
     exit (1);
   }
-  while(fgets(arr, s, fp))
+  /* while(fgets(arr, s, fp))
   {
   // create subtree 
     trieAdd(&head, arr);
+  }*/
+  while (!feof(fp)){
+    fscanf(fp,"%s",arr[i]);
+    trieAdd(&head, arr[i]);
+    i++;
   }
   fclose (fp);
   return head;
