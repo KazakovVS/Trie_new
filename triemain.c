@@ -6,17 +6,22 @@
 int main()
 {   
     Trie *head;
-    head = trieCreateByFile(&head);
+    head = trieCreateByFile(&head, "test.txt");
+      /*trieCreate(&head);
+        trieAdd(&head, "asdf");
+    trieAdd(&head, "asdfg");
+    trieAdd(&head, "asdfgh");
+    */
     triePrint(head);
     trieDestroy(head);
     /*Trie *head;
      
     //Create a trie
     trieCreate(&head);
-     
-    trieAdd(&head, "andrew");
-    trieAdd(&head, "andrewa");
-    trieAdd(&head, "tina");
+
+    trieAdd(&head, "asdf");
+    trieAdd(&head, "asdfg");
+    trieAdd(&head, "asdfgh");
     trieAdd(&head, "tinad");
     trieAdd(&head, "tinada");
     trieAdd(&head, "tinadaasd");
