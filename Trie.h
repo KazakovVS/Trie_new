@@ -18,4 +18,5 @@ Trie *TrieAdd(Trie **head, char *ch);
 Trie *TrieDestroy( Trie* head );
 //Функция печати дерева
 void TriePrint(Trie *head);
+
 void trie_print(Trie *head, int level);

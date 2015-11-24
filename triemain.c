@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include "trie.h"
 
+
 int main()
 {
     Trie *head;

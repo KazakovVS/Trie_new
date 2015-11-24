@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include "trie.h"
 
+
 //Функция создания узлов и выделения памяти для них
 Trie *TrieNodeCr(char ch);
  
