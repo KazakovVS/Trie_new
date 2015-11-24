@@ -204,23 +204,26 @@ int fileSize(char *name)
   return size;
 }
 
-Trie *trieCreateByFile(Trie **head, char *name)
+Trie *trieCreateByFile(Trie **head)
 {
   FILE *fp;
-  Trie *node;
+  Trie *node = head;
+  char name;
+  while ((name = getchar()) != EOF)
+    putchar (name);
   int s = fileSize(name);
   char arr[s][s];
-
+  trieCreate(&head);
+ // trieAdd(&head, "asd");
   if ((fp=fopen(name, "r")) == NULL) {
     printf("Cannot open file.\n");
     exit (1);
   }
- // trieCreate(&node);
   while(fgets(arr, s, fp))
   {
   // create subtree 
-    //trieAdd(&node, "asd");
-    printf("%s\n", arr);
+    trieAdd(&head, arr);
   }
   fclose (fp);
+  return head;
 }

@@ -17,9 +17,8 @@ Trie *trieAdd(Trie **head, char *ch);
 //Функция удаления дерева
 Trie *trieDestroy( Trie *head );
 //Создание дерева на основе файла
-Trie *trieCreateByFile(Trie *head, char *name);
+Trie *trieCreateByFile(Trie **head);
 //Функция печати дерева
 void triePrint(Trie *head);
 void trie_print(Trie *head, int level);
 int fileSize(char *name);
-//int fileCopy(char *name);

@@ -6,10 +6,9 @@
 int main()
 {   
     Trie *head;
-    int s = fileSize("test.txt");
-    char arr[s][s];
-    printf("%d\n", s );
-    trieCreateByFile(&head, "test.txt");
+    head = trieCreateByFile(&head);
+    triePrint(head);
+    trieDestroy(head);
     /*Trie *head;
      
     //Create a trie
