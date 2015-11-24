@@ -204,13 +204,10 @@ int fileSize(char *name)
   return size;
 }
 
-Trie *trieCreateByFile(Trie **head)
+Trie *trieCreateByFile(Trie **head, char *name)
 {
   FILE *fp;
   Trie *node = head;
-  char name;
-  while ((name = getchar()) != EOF)
-    putchar (name);
   int s = fileSize(name);
   char arr[s][s];
   trieCreate(&head);
