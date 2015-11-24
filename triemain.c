@@ -4,24 +4,25 @@
 
 
 int main()
-{
+{   
     Trie *head;
-
-    
-    printf("Trie Example\n");
+    head = trieCreateByFile(&head);
+    triePrint(head);
+    trieDestroy(head);
+    /*Trie *head;
      
-    /*Create a trie*/
-    TrieCreate(&head);
+    //Create a trie
+    trieCreate(&head);
      
-    TrieAdd(&head, "andrew");
-    TrieAdd(&head, "andrewa");
-    TrieAdd(&head, "tina");
-    TrieAdd(&head, "tinad");
-    TrieAdd(&head, "tinada");
-    TrieAdd(&head, "tinadaasd");
-    TriePrint(head);
+    trieAdd(&head, "andrew");
+    trieAdd(&head, "andrewa");
+    trieAdd(&head, "tina");
+    trieAdd(&head, "tinad");
+    trieAdd(&head, "tinada");
+    trieAdd(&head, "tinadaasd");
+    triePrint(head);
  
-    /*Destroy the trie*/
-    TrieDestroy(head);
- //       TriePrint(head);
+    //Destroy the trie
+    trieDestroy(head);*/
+       // TriePrint(head);
 }
